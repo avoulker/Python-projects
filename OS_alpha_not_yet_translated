@@ -1,0 +1,78 @@
+data_base_positive_response = ["да", "Да", "дА", "ДА", "д", "а"]
+data_base_negative_response = ["нет", "Нет", "нЕт", "неТ", "НеТ", "НЕт", "нЕТ", "НЕТ", "н", "Н", "не", "Не", "НЕ", "нЕ"]
+programs = ["Часы", "Калькулятор", "Игры"]
+
+def registration():
+    while True:
+        checking_account_availability = input("У тебя есть аккаунт?(Да или Нет.)\n")
+        if checking_account_availability in data_base_positive_response:
+            print("Хорошо, досвидания")
+            exit()
+        elif checking_account_availability in data_base_negative_response:
+            prompt_to_create_an_account_input = input("Ты хочешь создать свой аккаунт?\n")
+            if prompt_to_create_an_account_input in data_base_negative_response:
+                print("Хорошо, досвидания")
+                exit()
+            elif prompt_to_create_an_account_input in data_base_positive_response:
+                login = input("Придумай себе логин\n")
+                password = input("Придумай себе пароль\n")
+                one_try = True
+                while True:
+                    if one_try:
+                        enter = input("Аккаунт успешно создан, нажмите Enter что бы продолжить...")
+                    else:
+                        enter = input("Нажми Enter что бы продолжить!\n")
+                    if enter == "":
+                        desktop()
+                        return
+                    else:
+                        one_try = False
+
+        else:
+            print("Заново ответь на вопрос.")
+            continue
+
+def desktop():
+    while True:
+        choice = input("Добро пожаловать на робочий стол. Выберете действие\n1. Мои приложения.\n2. Настройки.\n3. Завершить роботу.\n(1, 2 или 3)\n")
+        if choice == "1":
+            print("<Мои приложения>")
+            for numeration, app in enumerate(programs, 1):
+                print(f"{numeration}. {app}")
+            print("4. Выйти.")
+            print("(1, 2,3 или 4)")
+            while True:
+                choice_program = input()
+                if choice_program == "1":
+                    print("OK")
+                    exit()
+                elif choice_program == "2":
+                    print("OK")
+                    exit()
+                elif choice_program == "3":
+                    print("OK")
+                    exit()
+                elif choice_program == "4":
+                    break
+                else:
+                    print("Такого варианта ответа нету, выбери снова.")
+                    continue
+
+        elif choice == "2":
+            while True:
+                setting_exit = input("<Настройки>\nПусто...(Что бы выйти нажмите Enter)")
+                if setting_exit == "":
+                    break
+                else:
+                    print("Такого варианта ответа нету, выбери снова.")
+                    continue
+
+        elif choice == "3":
+            print("Завершение роботы...")
+            exit()
+
+        else:
+            print("Такого варианта ответа нету, выбери снова.")
+            continue
+
+registration()
